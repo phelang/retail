@@ -58,7 +58,7 @@ public class ApplicationContextConfig {
 
         Properties properties = new Properties();
         properties.put("hibernate.show_sql", "true");
-        properties.put("hibernate.hbm2ddl.auto", "create");
+        properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.c3p0.min_size", "5");
         properties.put("hibernate.c3p0.max_size", "20");
         properties.put("hibernate.c3p0.timeout", "300");

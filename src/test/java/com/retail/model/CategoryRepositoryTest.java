@@ -1,4 +1,4 @@
-package com.retail;
+package com.retail.model;
 
 import com.retail.config.ApplicationContextConfig;
 import com.retail.config.ServletInitializer;
