@@ -1,6 +1,6 @@
 package com.retail.service.Impl;
 
-import com.retail.model.Category;
+import com.retail.model.ItemCategory;
 import com.retail.repository.CategoryRepository;
 import com.retail.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,27 +26,27 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Transactional
-    public Category save(Category category) {
-        return this.categoryRepository.save(category);
+    public ItemCategory save(ItemCategory itemCategory) {
+        return this.categoryRepository.save(itemCategory);
     }
 
     @Transactional
-    public Category findById(Integer id) {
+    public ItemCategory findById(Integer id) {
         return this.categoryRepository.findById(id);
     }
 
     @Transactional
-    public List<Category> findAll() {
+    public List<ItemCategory> findAll() {
        return this.categoryRepository.findAll();
     }
 
     @Transactional
-    public Category update(Category category) {
-        return this.categoryRepository.update(category);
+    public ItemCategory update(ItemCategory itemCategory) {
+        return this.categoryRepository.update(itemCategory);
     }
 
     @Transactional
-    public boolean delete(Category category) {
-        return this.categoryRepository.delete(category);
+    public boolean delete(ItemCategory itemCategory) {
+        return this.categoryRepository.delete(itemCategory);
     }
 }

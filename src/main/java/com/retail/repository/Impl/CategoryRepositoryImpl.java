@@ -1,6 +1,6 @@
 package com.retail.repository.Impl;
 
-import com.retail.model.Category;
+import com.retail.model.ItemCategory;
 import com.retail.repository.CategoryRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,6 +15,7 @@ import java.util.List;
 @Repository
 @Transactional
 public class CategoryRepositoryImpl implements CategoryRepository {
+
     private static final Logger logger = LoggerFactory.getLogger(CategoryRepositoryImpl.class);
 
     @Inject
@@ -25,12 +26,12 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     //@Override
-    public Category save(Category category) {
+    public ItemCategory save(ItemCategory itemCategory) {
         Session session = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            session.save(category);
+            session.save(itemCategory);
             session.getTransaction().commit();
         }catch (Exception e){
             session.getTransaction().rollback();
@@ -39,18 +40,18 @@ public class CategoryRepositoryImpl implements CategoryRepository {
                 session.close();
             }
         }
-         logger.info("Category successfully saved. Category Details : " + category);
-        return category;
+         logger.info("ItemCategory successfully saved. ItemCategory Details : " + itemCategory);
+        return itemCategory;
     }
 
     //@Override
-    public Category findById(Integer id) {
+    public ItemCategory findById(Integer id) {
         Session session = null;
-        Category category = null;
+        ItemCategory itemCategory = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            category = (Category) session.load(Category.class,new Integer(id));
+            itemCategory = (ItemCategory) session.load(ItemCategory.class,new Integer(id));
             session.getTransaction().commit();
 
         }catch (Exception e){
@@ -61,20 +62,20 @@ public class CategoryRepositoryImpl implements CategoryRepository {
             }
         }
         //logger.info("Books found.");
-        return category;
+        return itemCategory;
     }
 
    // @Override
     @SuppressWarnings("unchecked")
-    public List<Category> findAll() {
+    public List<ItemCategory> findAll() {
         Session session = null;
-        List<Category> categories = null;
+        List<ItemCategory> categories = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            categories = session.createQuery("from Category").list();
+            categories = session.createQuery("from ITEM_CATEGORY").list();
             session.getTransaction().commit();
-            //logger.info("Category successfully saved. Category Details : ");
+            //logger.info("ItemCategory successfully saved. ItemCategory Details : ");
         }catch (Exception e){
             session.getTransaction().rollback();
             //logger.info("Not List");
@@ -86,12 +87,12 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         return categories;
     }
    // @Override
-    public Category update(Category category) {
+    public ItemCategory update(ItemCategory itemCategory) {
         Session session = null;
         try {
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            session.update(category);
+            session.update(itemCategory);
             session.getTransaction().commit();
             //logger.info("Update Successfull.");
         }catch (Exception e){
@@ -106,15 +107,15 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     /*
-    Use findById(Integer id) method and then pass the category object delete(Category category)
+    Use findById(Integer id) method and then pass the itemCategory object delete(ItemCategory itemCategory)
      */
    // @Override
-    public boolean delete(Category category) {
+    public boolean delete(ItemCategory itemCategory) {
         Session session = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            session.delete(category);
+            session.delete(itemCategory);
             session.getTransaction().commit();
             logger.info("Delete successfull");
         }catch (Exception e){

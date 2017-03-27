@@ -1,8 +1,8 @@
 package com.retail.repository;
 
 
-import com.retail.model.Category;
+import com.retail.model.ItemCategory;
 
-public interface CategoryRepository extends Repository<Category, Integer> {
+public interface CategoryRepository extends Repository<ItemCategory, Integer> {
 
 }

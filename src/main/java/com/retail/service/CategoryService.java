@@ -1,6 +1,6 @@
 package com.retail.service;
 
-import com.retail.model.Category;
+import com.retail.model.ItemCategory;
 
-public interface CategoryService extends Service<Category, Integer> {
+public interface CategoryService extends Service<ItemCategory, Integer> {
 }

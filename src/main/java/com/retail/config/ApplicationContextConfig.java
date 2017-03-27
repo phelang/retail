@@ -1,8 +1,14 @@
 package com.retail.config;
 
-import com.retail.model.Category;
+import com.retail.model.ItemCategory;
 import com.retail.repository.CategoryRepository;
 import com.retail.repository.Impl.CategoryRepositoryImpl;
+import com.retail.repository.Impl.ItemRepositoryImpl;
+import com.retail.repository.ItemRepository;
+import com.retail.service.CategoryService;
+import com.retail.service.Impl.CategoryServiceImpl;
+import com.retail.service.Impl.ItemServiceImpl;
+import com.retail.service.ItemService;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,26 +17,24 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
-/**
- * Created by pelang on 2017/02/22.
- */
 @Configuration
-@ComponentScan(basePackages =
-        {"com.retail", "com.retail.model", "com.retail.repository",
-        "com.retail.controller", "com.retail.config"
-        })
+@ComponentScan({
+        "com.retail.config", "com.retail.model", "com.retail.repository",
+        "com.retail.service", "com.retail.web" })
 @EnableTransactionManagement
 @EnableWebMvc
 public class ApplicationContextConfig {
 
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
+
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/what");
@@ -45,10 +49,8 @@ public class ApplicationContextConfig {
     public SessionFactory getSessionFactory(DataSource dataSource) {
 
         LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-        sessionBuilder.addAnnotatedClasses(Category.class); // my classes
-        sessionBuilder.scanPackages("com.retail", "com.retail.config", "com.retail.repository", "com.retail.controller");
-
-
+        sessionBuilder.addAnnotatedClasses(ItemCategory.class); // my classes
+        sessionBuilder.scanPackages("com.retail", "com.retail.config", "com.retail.model", "com.retail.repository", "com.retail.web");
         sessionBuilder.addProperties(getHibernateProperties());
 
         return sessionBuilder.buildSessionFactory();
@@ -82,5 +84,20 @@ public class ApplicationContextConfig {
     public CategoryRepository categoryRepository() {
         return new CategoryRepositoryImpl();
     }
+
+    @Bean(name="itemRepository")
+    public ItemRepository itemRepository() {
+        return new ItemRepositoryImpl();
+    }
+
+    /*@Bean(name="categoryService")
+    public CategoryService categoryService() {
+        return new CategoryServiceImpl();
+    }
+
+    @Bean(name="itemService")
+    public ItemService itemService() {
+        return new ItemServiceImpl();
+    }*/
 
 }
