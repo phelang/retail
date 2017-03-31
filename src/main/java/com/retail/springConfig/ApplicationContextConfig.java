@@ -30,12 +30,22 @@ public class ApplicationContextConfig {
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
 
-        BasicDataSource dataSource = new BasicDataSource();
+
+        /* MySQL DATA CONNECTION */
+        /*BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/what");
         dataSource.setUsername("pelang");
-        dataSource.setPassword("password");
+        dataSource.setPassword("password");*/
 
+        /*POSGRE DATA CONNECTION */
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://ec2-107-20-141-145.compute-1.amazonaws.com:5432/d8g2udicueur6h");
+        dataSource.setUsername("qnjtnxskfsclqp");
+        dataSource.setPassword("50c6e1eb25f54f51d7133bbc57faa66478f21826326a59c8b6cb0c6008d05675");
+
+        /* ssl = true, sslFactory = org.postgresql.ssl.NonValidatingFactory */
         return dataSource;
     }
 
@@ -54,6 +64,7 @@ public class ApplicationContextConfig {
     private Properties getHibernateProperties(){
 
         Properties properties = new Properties();
+        properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.c3p0.min_size", "5");
