@@ -1,8 +1,8 @@
 package com.retail.repository;
 
-import com.retail.config.ApplicationContextConfig;
-import com.retail.config.ServletInitializer;
-import com.retail.config.SpringWebConfig;
+import com.retail.springConfig.ApplicationContextConfig;
+import com.retail.springConfig.ServletInitializer;
+import com.retail.springConfig.SpringWebConfig;
 import com.retail.model.ItemCategory;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
@@ -45,9 +45,6 @@ public class ItemCategoryRepositoryTest {
         Assert.assertEquals(itemCategory.getId(), id);
         Assert.assertEquals(savedItemCategory.getId(), itemCategory.getId());
         Assert.assertNotNull(id);
-
-        System.out.println(savedItemCategory.getCategoryName());
-        System.out.println(savedItemCategory.getId());
     }
 
     @Test
@@ -65,10 +62,7 @@ public class ItemCategoryRepositoryTest {
     @Transactional
     public void C_testThatThereIsAListOfCategories() throws Exception {
         List<ItemCategory> categories = this.categoryRepository.findAll();
-        Assert.assertTrue(categories.size() > 0);
-        for(ItemCategory itemCategory : categories){
-            System.out.printf(itemCategory.toString());
-        }
+        Assert.assertTrue(categories.size() >= 0);
     }
 
     @Test
@@ -89,9 +83,10 @@ public class ItemCategoryRepositoryTest {
     @Test
     @Transactional
     public void E_testThatCategoryIsDeleted() throws Exception {
-        ItemCategory category = (ItemCategory) categoryRepository.findById(1);
-        this.categoryRepository.delete(category);
-        ItemCategory deletedCategory = (ItemCategory) categoryRepository.findById(1);
+        ItemCategory category = this.categoryRepository.delete(id);
+        ItemCategory deletedCategory = (ItemCategory) categoryRepository.findById(id);
+
+        Assert.assertNotNull(category);
         Assert.assertNull(deletedCategory);
     }
 }

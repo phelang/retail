@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS $http Rest</title>
+
+    <link href="/resources/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <script src="/resources/js/angular/angular.js"></script>
+    <script src="/resources/js/AngularHttpService.js"></script>
+
+    <style>
+
+        .blue-button{
+            background: #25A6E1;
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#25A6E1',endColorstr='#188BC0',GradientType=0);
+            padding:3px 5px;
+            color:#fff;
+            font-family:'Helvetica Neue',sans-serif;
+            font-size:12px;
+            border-radius:2px;
+            -moz-border-radius:2px;
+            -webkit-border-radius:4px;
+            border:1px solid #1A87B9
+        }
+
+        .red-button{
+            background: #CD5C5C;
+
+            padding:3px 5px;
+            color:#fff;
+            font-family:'Helvetica Neue',sans-serif;
+            font-size:12px;
+            border-radius:2px;
+            -moz-border-radius:2px;
+            -webkit-border-radius:4px;
+            border:1px solid #CD5C5C
+        }
+
+        table {
+            font-family: "Helvetica Neue", Helvetica, sans-serif;
+            width: 50%;
+        }
+
+        caption {
+            text-align: left;
+            color: silver;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 5px;
+        }
+
+        th {
+            background: SteelBlue;
+            color: white;
+        }
+
+
+        tbody tr:nth-child(even) {
+            background: WhiteSmoke;
+        }
+
+        tbody tr td:nth-child(2) {
+            text-align:center;
+        }
+
+        tbody tr td:nth-child(3),
+        tbody tr td:nth-child(4) {
+            text-align: center;
+            font-family: monospace;
+        }
+
+        tfoot {
+            background: SeaGreen;
+            color: white;
+            text-align: right;
+        }
+
+        tfoot tr th:last-child {
+            font-family: monospace;
+        }
+
+        td,th{
+            border: 1px solid gray;
+            width: 25%;
+            text-align: left;
+            padding: 5px 10px;
+        }
+
+    </style>
+</head>
+<body class="container" ng-app="ItemCategoryManagement" ng-controller="ItemCategoryController">
+
+    <!-- Heading of the page with binding to welcome message -->
+    <div>
+        <h1>Categories Crud Operations</h1>
+        <br />
+        <br />
+        <h5>{{ welcome }}</h5>
+        <br />
+        <br />
+    </div>
+
+    <!-- form element to manage the processing of the app, including, edit, delete, update -->
+    <form ng-submit="submitCategory()">
+
+        <table class="table">
+            <thead>
+                <tr >
+                    <th colspan="2">Add/Edit categories</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID</td>
+                    <td>
+                        <input type="text" ng-model="categoryForm.id" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Category Name</td>
+                    <td>
+                        <input type="text" ng-model="categoryForm.categoryName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="submit" class="blue-button"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+    <!-- Show all categories data -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="category in categories">
+                <td>{{ category.id }}</td>
+                <td>{{ category.categoryName }}</td>
+
+
+                <td>
+                    <a ng-click="editCategory(category)" class="blue-button">Edit</a> |
+                    <a ng-click="deleteCategory(category)" class="red-button">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

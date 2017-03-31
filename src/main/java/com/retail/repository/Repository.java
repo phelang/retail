@@ -7,5 +7,5 @@ public interface Repository<E, ID> {
     public E findById(ID id);
     public List<E> findAll();
     public E update(E entity);
-    public boolean delete(E entity);
+    public E delete(ID id);
 }

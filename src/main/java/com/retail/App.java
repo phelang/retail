@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @SpringBootApplication
 @ComponentScan(basePackages =
         {"com.retail", "com.retail.model", "com.retail.repository",
-        "com.retail.controller","com.retail.config"
+        "com.retail.controller", "com.retail.springConfig"
         })
 public class App {
 

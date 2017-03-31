@@ -1,6 +1,6 @@
 package com.retail.service;
 
-import com.retail.config.ApplicationContextConfig;
+import com.retail.springConfig.ApplicationContextConfig;
 import com.retail.model.Item;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
@@ -60,7 +60,7 @@ public class ItemServiceTest {
     @Transactional
     public void C_testThatThereIsAListOfItems() throws Exception {
         List<Item> items = this.itemService.findAll();
-        Assert.assertTrue(items.size() > 0);
+        Assert.assertTrue(items.size() >= 0);
     }
 
     @Test
@@ -82,14 +82,10 @@ public class ItemServiceTest {
     @Test
     @Transactional
     public void E_testThatItemIsDeleted() throws Exception {
-        Item item = (Item) this.itemService.findById(id);
-
-        if(item == null){
-            Assert.fail();
-        }
-
-        this.itemService.delete(item);
+        Item item = this.itemService.delete(id);
         Item deletedCategory = (Item) this.itemService.findById(id);
+
+        Assert.assertNotNull(item);
         Assert.assertNull(deletedCategory);
     }
 }

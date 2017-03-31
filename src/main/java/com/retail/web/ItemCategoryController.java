@@ -6,26 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/category/")
+@RequestMapping("/category")
 public class ItemCategoryController {
 
     @Autowired
-    private CategoryService categoryService;
+    private CategoryService itemCategoryService;
 
-    @RequestMapping(value = "/categories/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/categories", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<ItemCategory>> showCategories(){
 
-        List<ItemCategory> categories = this.categoryService.findAll();
+        List<ItemCategory> categories = this.itemCategoryService.findAll();
 
         if(categories.isEmpty()){
             return new ResponseEntity<List<ItemCategory>>(HttpStatus.NO_CONTENT);
@@ -33,4 +28,23 @@ public class ItemCategoryController {
         return new ResponseEntity<List<ItemCategory>>(categories, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public ResponseEntity<ItemCategory> getItemCategoryById(@PathVariable int id){
+        return new ResponseEntity<ItemCategory>(itemCategoryService.findById(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ItemCategory> addItemCategory(@RequestBody ItemCategory itemCategory){
+        return new ResponseEntity<ItemCategory>(itemCategoryService.save(itemCategory),HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ItemCategory> updateItemCategory(@RequestBody ItemCategory itemCategory){
+        return new ResponseEntity<ItemCategory>(itemCategoryService.update(itemCategory), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/remove/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ItemCategory> removeItemCategory(@PathVariable("id") int id){
+        return new ResponseEntity<ItemCategory>(itemCategoryService.delete(id), HttpStatus.OK);
+    }
 }

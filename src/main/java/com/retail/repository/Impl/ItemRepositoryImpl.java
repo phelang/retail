@@ -109,12 +109,14 @@ public class ItemRepositoryImpl implements ItemRepository {
     }
 
     //@Override
-    public boolean delete(Item item) {
+    public Item delete(Integer id) {
         Session session = null;
+        Item toDeleteItem = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            session.delete(item);
+            toDeleteItem = this.findById(id);
+            session.delete(toDeleteItem);
             session.getTransaction().commit();
             logger.info("Delete successfull");
         }catch (Exception e){
@@ -125,6 +127,6 @@ public class ItemRepositoryImpl implements ItemRepository {
                 session.close();
             }
         }
-        return true;
+        return toDeleteItem;
     }
 }

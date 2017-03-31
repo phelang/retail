@@ -1,12 +1,13 @@
-package com.retail.config;
+package com.retail.springConfig;
 
+import com.retail.springSecurity.WebSecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class ServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { SpringRootConfig.class };
+        return new Class[] { WebSecurityConfig.class };
     }
 
     @Override

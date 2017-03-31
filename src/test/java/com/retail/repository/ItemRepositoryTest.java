@@ -1,8 +1,8 @@
 package com.retail.repository;
 
-import com.retail.config.ApplicationContextConfig;
-import com.retail.config.ServletInitializer;
-import com.retail.config.SpringWebConfig;
+import com.retail.springConfig.ApplicationContextConfig;
+import com.retail.springConfig.ServletInitializer;
+import com.retail.springConfig.SpringWebConfig;
 import com.retail.model.Item;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
@@ -68,7 +68,7 @@ public class ItemRepositoryTest {
     @Transactional
     public void C_testThatThereIsAListOfItems() throws Exception {
         List<Item> items = this.itemRepository.findAll();
-        Assert.assertTrue(items.size() > 0);
+        Assert.assertTrue(items.size() >= 0);
     }
 
     @Test
@@ -90,14 +90,10 @@ public class ItemRepositoryTest {
     @Test
     @Transactional
     public void E_testThatItemIsDeleted() throws Exception {
-        Item item = (Item) this.itemRepository.findById(id);
-
-        if(item == null){
-            Assert.fail();
-        }
-
-        this.itemRepository.delete(item);
+        Item item = this.itemRepository.delete(id);
         Item deletedCategory = (Item) this.itemRepository.findById(id);
+
+        Assert.assertNotNull(item);
         Assert.assertNull(deletedCategory);
     }
 }

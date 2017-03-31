@@ -1,27 +1,16 @@
-package com.retail.config;
+package com.retail.springConfig;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.handler.AbstractHandlerMapping;
-import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
 
 @EnableWebMvc   //<mvc:annotation-driven />
 @Configuration
 @ComponentScan({
-        "com.retail.config", "com.retail.model", "com.retail.repository",
+        "com.retail.springConfig", "com.retail.model", "com.retail.repository",
         "com.retail.service", "com.retail.web" })
 public class SpringWebConfig extends WebMvcConfigurerAdapter{
 

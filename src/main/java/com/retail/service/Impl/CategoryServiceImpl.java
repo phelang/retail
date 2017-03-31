@@ -46,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Transactional
-    public boolean delete(ItemCategory itemCategory) {
-        return this.categoryRepository.delete(itemCategory);
+    public ItemCategory delete(Integer id) {
+        return this.categoryRepository.delete(id);
     }
 }

@@ -42,7 +42,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Transactional
-    public boolean delete(Item item) {
-        return this.itemRepository.delete(item);
+    public Item  delete(Integer id) {
+        return this.itemRepository.delete(id);
     }
 }

@@ -24,4 +24,9 @@ public class HomeController {
 
         return "about";
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/categories")
+    public String categories(){
+        return "categoriesCRUD";
+    }
 }

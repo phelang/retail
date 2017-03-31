@@ -109,13 +109,15 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     /*
     Use findById(Integer id) method and then pass the itemCategory object delete(ItemCategory itemCategory)
      */
-   // @Override
-    public boolean delete(ItemCategory itemCategory) {
+    // @Override
+    public ItemCategory delete(Integer id) {
         Session session = null;
+        ItemCategory toDeleteItemCategory = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            session.delete(itemCategory);
+            toDeleteItemCategory = this.findById(id);
+            session.delete(toDeleteItemCategory);
             session.getTransaction().commit();
             logger.info("Delete successfull");
         }catch (Exception e){
@@ -126,6 +128,6 @@ public class CategoryRepositoryImpl implements CategoryRepository {
                 session.close();
             }
         }
-        return true;
+        return toDeleteItemCategory;
     }
 }
