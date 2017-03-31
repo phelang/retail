@@ -31,14 +31,14 @@ public class ApplicationContextConfig {
     public DataSource getDataSource() {
 
 
-        /*MySQL DATA CONNECTION */
+        /*Local MySQL DATA CONNECTION */
         /*BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/what");
         dataSource.setUsername("pelang");
         dataSource.setPassword("password");*/
 
-        /*POSGRE DATA CONNECTION */
+        /*POSGRE REMOTE DATA CONNECTION */
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://ec2-107-20-141-145.compute-1.amazonaws.com:5432/d8g2udicueur6h");
