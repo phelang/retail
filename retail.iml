@@ -12,6 +12,19 @@
         </sourceRoots>
       </configuration>
     </facet>
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="initializer com.retail.springConfig.ServletInitializer servlet context" name="MVC dispatcher initializer servlet context" removed="true" />
+        <fileset id="initializer com.retail.springConfig.ServletInitializer root context" name="MVC dispatcher initializer root context" removed="true" />
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/retail/App.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/retail/springConfig/ApplicationContextConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/retail/springConfig/SpringRootConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/retail/springConfig/SpringWebConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/retail/springSecurity/WebSecurityConfig.java</file>
+        </fileset>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
