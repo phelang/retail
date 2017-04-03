@@ -25,7 +25,6 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         this.sessionFactory = sessionFactory;
     }
 
-    //@Override
     public ItemCategory save(ItemCategory itemCategory) {
         Session session = null;
         try{
@@ -44,7 +43,6 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         return itemCategory;
     }
 
-    //@Override
     public ItemCategory findById(Integer id) {
         Session session = null;
         ItemCategory itemCategory = null;
@@ -65,7 +63,6 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         return itemCategory;
     }
 
-   // @Override
     @SuppressWarnings("unchecked")
     public List<ItemCategory> findAll() {
         Session session = null;
@@ -86,7 +83,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         }
         return categories;
     }
-   // @Override
+
     public ItemCategory update(ItemCategory itemCategory) {
         Session session = null;
         try {
@@ -109,7 +106,6 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     /*
     Use findById(Integer id) method and then pass the itemCategory object delete(ItemCategory itemCategory)
      */
-    // @Override
     public ItemCategory delete(Integer id) {
         Session session = null;
         ItemCategory toDeleteItemCategory = null;
@@ -119,10 +115,10 @@ public class CategoryRepositoryImpl implements CategoryRepository {
             toDeleteItemCategory = this.findById(id);
             session.delete(toDeleteItemCategory);
             session.getTransaction().commit();
-            logger.info("Delete successfull");
+            logger.info("");
         }catch (Exception e){
             session.getTransaction().rollback();
-            //logger.info("Not Deleted");
+            logger.info("");
         }finally {
             if(session != null){
                 session.close();

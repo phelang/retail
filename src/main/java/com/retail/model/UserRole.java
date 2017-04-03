@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public class UserRole implements Serializable{
 
+    public UserRole() {
+    }
+
     private int id;
     private int userId;
     private String role;

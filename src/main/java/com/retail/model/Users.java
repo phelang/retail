@@ -1,12 +1,29 @@
 package com.retail.model;
 
+import org.hibernate.annotations.Proxy;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
-public class User implements Serializable{
+@Entity(name = "USERS")
+@Proxy(lazy = false)
+public class Users implements Serializable{
 
+    public Users() {
+    }
+
+    @Id
+    @Column(name="ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(name = "USERNAME")
     private String username;
+
+    @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "EMAIL")
     private String email;
 
     public int getId() {
@@ -25,7 +42,12 @@ public class User implements Serializable{
         return email;
     }
 
-    public User(Builder builder){
+    @Override
+    public String toString() {
+        return String.format("Id %d \n Users Name %s \n Password %s \n Email %s", id, username, password, email);
+    }
+
+    public Users(Builder builder){
         this.id = builder.id;
         this.username = builder.username;
         this.password = builder.password;
@@ -58,16 +80,16 @@ public class User implements Serializable{
             return this;
         }
 
-        public Builder copy(User user){
-            this.id = user.id;
-            this.username = user.username;
-            this.password = user.password;
-            this.email = user.email;
+        public Builder copy(Users users){
+            this.id = users.id;
+            this.username = users.username;
+            this.password = users.password;
+            this.email = users.email;
             return this;
         }
 
-        public User build(){
-            return new User(this);
+        public Users build(){
+            return new Users(this);
         }
     }
 }

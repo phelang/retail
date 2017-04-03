@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-04-03.14:45:02.652</IntrospectionTimestamp>
-      <IntrospectionStateNumber>663</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-04-03.16:31:24.174</IntrospectionTimestamp>
+      <IntrospectionStateNumber>803</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -30,75 +30,111 @@
       <ObjectId>12119</ObjectId>
     </schema>
     <sequence id="9" parent="3" name="hibernate_sequence">
-      <ObjectId>16398</ObjectId>
-      <StateNumber>663</StateNumber>
+      <ObjectId>16613</ObjectId>
+      <StateNumber>803</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
     <table id="10" parent="3" name="item">
-      <ObjectId>16385</ObjectId>
-      <StateNumber>661</StateNumber>
+      <ObjectId>16592</ObjectId>
+      <StateNumber>800</StateNumber>
     </table>
     <table id="11" parent="3" name="item_category">
-      <ObjectId>16393</ObjectId>
-      <StateNumber>662</StateNumber>
+      <ObjectId>16600</ObjectId>
+      <StateNumber>801</StateNumber>
     </table>
-    <column id="12" parent="10" name="id">
+    <table id="12" parent="3" name="users">
+      <ObjectId>16605</ObjectId>
+      <StateNumber>802</StateNumber>
+    </table>
+    <column id="13" parent="10" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>661</StateNumber>
+      <StateNumber>800</StateNumber>
     </column>
-    <column id="13" parent="10" name="description">
+    <column id="14" parent="10" name="description">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>661</StateNumber>
+      <StateNumber>800</StateNumber>
     </column>
-    <column id="14" parent="10" name="name">
+    <column id="15" parent="10" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>661</StateNumber>
+      <StateNumber>800</StateNumber>
     </column>
-    <column id="15" parent="10" name="item_category_id">
+    <column id="16" parent="10" name="item_category_id">
       <Position>4</Position>
       <DataType>integer|0</DataType>
-      <StateNumber>661</StateNumber>
+      <StateNumber>800</StateNumber>
     </column>
-    <column id="16" parent="10" name="price">
+    <column id="17" parent="10" name="price">
       <Position>5</Position>
       <DataType>numeric(19,2)|0</DataType>
-      <StateNumber>661</StateNumber>
+      <StateNumber>800</StateNumber>
     </column>
-    <index id="17" parent="10" name="item_pkey">
-      <ObjectId>16391</ObjectId>
+    <index id="18" parent="10" name="item_pkey">
+      <ObjectId>16598</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="18" parent="10" name="item_pkey">
-      <ObjectId>16392</ObjectId>
+    <key id="19" parent="10" name="item_pkey">
+      <ObjectId>16599</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>item_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="19" parent="11" name="id">
+    <column id="20" parent="11" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>662</StateNumber>
+      <StateNumber>801</StateNumber>
     </column>
-    <column id="20" parent="11" name="category_name">
+    <column id="21" parent="11" name="category_name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>662</StateNumber>
+      <StateNumber>801</StateNumber>
     </column>
-    <index id="21" parent="11" name="item_category_pkey">
-      <ObjectId>16396</ObjectId>
+    <index id="22" parent="11" name="item_category_pkey">
+      <ObjectId>16603</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="22" parent="11" name="item_category_pkey">
-      <ObjectId>16397</ObjectId>
+    <key id="23" parent="11" name="item_category_pkey">
+      <ObjectId>16604</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>item_category_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="24" parent="12" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>802</StateNumber>
+    </column>
+    <column id="25" parent="12" name="email">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>802</StateNumber>
+    </column>
+    <column id="26" parent="12" name="password">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>802</StateNumber>
+    </column>
+    <column id="27" parent="12" name="username">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>802</StateNumber>
+    </column>
+    <index id="28" parent="12" name="users_pkey">
+      <ObjectId>16611</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="29" parent="12" name="users_pkey">
+      <ObjectId>16612</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
   </database-model>

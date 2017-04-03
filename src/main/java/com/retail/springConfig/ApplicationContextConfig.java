@@ -30,7 +30,6 @@ public class ApplicationContextConfig {
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
 
-
         /*Local MySQL DATA CONNECTION */
         /*BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
@@ -45,7 +44,7 @@ public class ApplicationContextConfig {
         dataSource.setUsername("qnjtnxskfsclqp");
         dataSource.setPassword("50c6e1eb25f54f51d7133bbc57faa66478f21826326a59c8b6cb0c6008d05675");*/
 
-        /*POSTGRES LOCAT DATA CONNECTION */
+        /*POSTGRES LOCAL DATA CONNECTION */
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/retail");
@@ -72,7 +71,7 @@ public class ApplicationContextConfig {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.put("hibernate.show_sql", "true");
-        properties.put("hibernate.hbm2ddl.auto", "update");
+        properties.put("hibernate.hbm2ddl.auto", "create");
         properties.put("hibernate.c3p0.min_size", "5");
         properties.put("hibernate.c3p0.max_size", "20");
         properties.put("hibernate.c3p0.timeout", "300");

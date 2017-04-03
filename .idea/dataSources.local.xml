@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="d8g2udicueur6h@ec2-107-20-141-145.compute-1.amazonaws.com" uuid="32c03200-4624-4981-b600-ff0e92326eb5">
-      <database-info product="PostgreSQL" version="9.6.1" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
-        <identifier-quote-string>&quot;</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
-      <secret-storage>memory</secret-storage>
-      <user-name>qnjtnxskfsclqp</user-name>
-      <resolve-scope>d8g2udicueur6h:public,qnjtnxskfsclqp</resolve-scope>
-    </data-source>
     <data-source name="retail@localhost" uuid="b04f1115-1535-4065-8e28-93f87ad6d6af">
       <database-info product="PostgreSQL" version="9.5.6" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
         <identifier-quote-string>&quot;</identifier-quote-string>
@@ -17,7 +8,7 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>postgres</user-name>
-      <resolve-scope>postgres:public,postgres</resolve-scope>
+      <resolve-scope>postgres:postgres,public</resolve-scope>
     </data-source>
   </component>
 </project>

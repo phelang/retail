@@ -9,6 +9,8 @@ import java.io.Serializable;
 @Proxy(lazy = false)
 public class ItemCategory implements Serializable{
 
+    public ItemCategory(){}
+
     @Id
     @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,8 +18,6 @@ public class ItemCategory implements Serializable{
 
     @Column(name = "CATEGORY_NAME")
     private String categoryName;
-
-    public ItemCategory(){}
 
     public ItemCategory(Builder builder)
     {

@@ -1,7 +1,7 @@
 package com.retail.repository.Impl;
 
-import com.retail.model.Item;
-import com.retail.repository.ItemRepository;
+import com.retail.model.Users;
+import com.retail.repository.UserRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class ItemRepositoryImpl implements ItemRepository {
+public class UserRepositoryImpl implements UserRepository{
 
     private static final Logger logger = LoggerFactory.getLogger(CategoryRepositoryImpl.class);
 
@@ -25,31 +25,31 @@ public class ItemRepositoryImpl implements ItemRepository {
         this.sessionFactory = sessionFactory;
     }
 
-    public Item save(Item item) {
+    public Users save(Users users) {
         Session session = null;
-        try{
+        try {
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            session.save(item);
+            session.save(users);
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             session.getTransaction().rollback();
-        }finally {
-            if(session != null){
+        } finally {
+            if (session != null) {
                 session.close();
             }
         }
-        logger.info("");
-        return item;
+        logger.info("User saved " + users.toString());
+        return users;
     }
 
-    public Item findById(Integer id) {
+    public Users findById(Integer id) {
         Session session = null;
-        Item item = null;
+        Users user = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            item = (Item) session.load(Item.class,new Integer(id));
+            user = (Users) session.load(Users.class,new Integer(id));
             session.getTransaction().commit();
 
         }catch (Exception e){
@@ -60,17 +60,17 @@ public class ItemRepositoryImpl implements ItemRepository {
             }
         }
         //logger.info("");
-        return item;
+        return user;
     }
 
     @SuppressWarnings("unchecked")
-    public List<Item> findAll() {
+    public List<Users> findAll() {
         Session session = null;
-        List<Item> categories = null;
+        List<Users> users = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            categories = session.createQuery("from ITEM").list();
+            users = session.createQuery("from USERS").list();
             session.getTransaction().commit();
             //logger.info("Items");
         }catch (Exception e){
@@ -81,31 +81,31 @@ public class ItemRepositoryImpl implements ItemRepository {
                 session.close();
             }
         }
-        return categories;
+        return users;
     }
 
-    public Item update(Item item) {
+    public Users update(Users user) {
         Session session = null;
         try {
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            session.update(item);
+            session.update(user);
             session.getTransaction().commit();
             logger.info("");
-        }catch (Exception e){
+        } catch (Exception e) {
             //logger.info("Could not update.");
             session.getTransaction().rollback();
-        }finally {
-            if(session != null){
+        } finally {
+            if (session != null) {
                 session.close();
             }
         }
         return null;
     }
 
-    public Item delete(Integer id) {
+    public Users delete(Integer id) {
         Session session = null;
-        Item toDeleteItem = null;
+        Users toDeleteItem = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();

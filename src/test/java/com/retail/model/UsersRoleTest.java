@@ -3,7 +3,7 @@ package com.retail.model;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class UserRoleTest {
+public class UsersRoleTest {
 
     @Test
     public void testThatUserRoleIsCreated() throws Exception {
