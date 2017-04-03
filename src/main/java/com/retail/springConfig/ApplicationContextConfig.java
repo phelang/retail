@@ -38,13 +38,20 @@ public class ApplicationContextConfig {
         dataSource.setUsername("pelang");
         dataSource.setPassword("password");*/
 
-        /*POSGRE REMOTE DATA CONNECTION */
-        BasicDataSource dataSource = new BasicDataSource();
+        /*POSTGRES REMOTE DATA CONNECTION */
+        /*BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://ec2-107-20-141-145.compute-1.amazonaws.com:5432/d8g2udicueur6h");
         dataSource.setUsername("qnjtnxskfsclqp");
-        dataSource.setPassword("50c6e1eb25f54f51d7133bbc57faa66478f21826326a59c8b6cb0c6008d05675");
-        /* ssl = true, sslFactory = org.postgresql.ssl.NonValidatingFactory */
+        dataSource.setPassword("50c6e1eb25f54f51d7133bbc57faa66478f21826326a59c8b6cb0c6008d05675");*/
+
+        /*POSTGRES LOCAT DATA CONNECTION */
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/retail");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("postgres");
+
         return dataSource;
     }
 
@@ -94,15 +101,4 @@ public class ApplicationContextConfig {
     public ItemRepository itemRepository() {
         return new ItemRepositoryImpl();
     }
-
-    /*@Bean(name="categoryService")
-    public CategoryService categoryService() {
-        return new CategoryServiceImpl();
-    }
-
-    @Bean(name="itemService")
-    public ItemService itemService() {
-        return new ItemServiceImpl();
-    }*/
-
 }

@@ -69,7 +69,7 @@ public class ItemServiceTest {
         Item item = (Item) this.itemService.findById(id);
 
         Item updateItem = new Item.Builder()
-                .copy(item)
+                .updater(item)
                 .itemName("JackD")
                 .build();
 

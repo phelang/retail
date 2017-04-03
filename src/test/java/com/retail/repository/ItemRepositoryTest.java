@@ -77,7 +77,7 @@ public class ItemRepositoryTest {
         Item item = (Item) this.itemRepository.findById(id);
 
         Item updateItem = new Item.Builder()
-                .copy(item)
+                .updater(item)
                 .itemName("JackD")
                 .build();
 
@@ -87,13 +87,14 @@ public class ItemRepositoryTest {
         Assert.assertEquals(newUpdatedItem.getItemName(), "JackD");
     }
 
-    @Test
+    /*@Test
     @Transactional
+    @Rollback(true)
     public void E_testThatItemIsDeleted() throws Exception {
         Item item = this.itemRepository.delete(id);
         Item deletedCategory = (Item) this.itemRepository.findById(id);
 
         Assert.assertNotNull(item);
         Assert.assertNull(deletedCategory);
-    }
+    }*/
 }

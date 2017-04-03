@@ -50,7 +50,7 @@ public class ItemCategory implements Serializable{
             this.categoryName = categoryName;
             return this;
         }
-        public Builder copy(ItemCategory itemCategory){
+        public Builder updater(ItemCategory itemCategory){
             this.id = itemCategory.id;
             this.categoryName = itemCategory.categoryName;
             return this;

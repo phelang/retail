@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class ItemModelTest {
 
     @Test
-    public void testThatAttributesAreSet() throws Exception {
+    public void testThatItemIsCreated() throws Exception {
 
         Item item = new Item.Builder()
                 .id(0)

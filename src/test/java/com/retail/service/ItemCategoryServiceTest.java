@@ -61,7 +61,7 @@ public class ItemCategoryServiceTest {
     public void D_testThatCategoryIsUpdated() throws Exception {
         ItemCategory category = this.categoryService.findById(id);
         ItemCategory updaterCategory = new ItemCategory.Builder()
-                .copy(category)
+                .updater(category)
                 .categoryName("Liquor")
                 .build();
 

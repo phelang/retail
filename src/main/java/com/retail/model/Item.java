@@ -95,7 +95,7 @@ public class Item {
             return this;
         }
 
-        public Builder copy(Item item){
+        public Builder updater(Item item){
             this.id = item.id;
             this.item_category_id = item.item_category_id;
             this.itemName= item.itemName;

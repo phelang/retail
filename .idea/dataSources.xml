@@ -11,5 +11,11 @@
         <property name="ssl" value="true" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="retail@localhost" uuid="b04f1115-1535-4065-8e28-93f87ad6d6af">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/retail</jdbc-url>
+    </data-source>
   </component>
 </project>
