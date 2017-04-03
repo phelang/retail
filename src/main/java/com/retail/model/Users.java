@@ -80,7 +80,7 @@ public class Users implements Serializable{
             return this;
         }
 
-        public Builder copy(Users users){
+        public Builder updater(Users users){
             this.id = users.id;
             this.username = users.username;
             this.password = users.password;
