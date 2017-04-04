@@ -1,14 +1,26 @@
 package com.retail.model;
 
+import org.hibernate.annotations.Proxy;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity(name = "USER_ROLE")
+@Proxy(lazy = false)
 public class UserRole implements Serializable{
 
     public UserRole() {
     }
 
+    @Id
+    @Column(name="ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(name = "USER_ID")
     private int userId;
+
+    @Column(name = "ROLE")
     private String role;
 
     public int getId() {

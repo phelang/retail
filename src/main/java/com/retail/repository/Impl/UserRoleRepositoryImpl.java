@@ -1,7 +1,7 @@
 package com.retail.repository.Impl;
 
-import com.retail.model.Users;
-import com.retail.repository.UserRepository;
+import com.retail.model.UserRole;
+import com.retail.repository.UserRoleRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class UserRepositoryImpl implements UserRepository{
+public class UserRoleRepositoryImpl implements UserRoleRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(CategoryRepositoryImpl.class);
 
@@ -25,12 +25,12 @@ public class UserRepositoryImpl implements UserRepository{
         this.sessionFactory = sessionFactory;
     }
 
-    public Users save(Users users) {
+    public UserRole save(UserRole userRole) {
         Session session = null;
         try {
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            session.save(users);
+            session.save(userRole);
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
@@ -39,17 +39,17 @@ public class UserRepositoryImpl implements UserRepository{
                 session.close();
             }
         }
-        logger.info("User saved " + users.toString());
-        return users;
+        logger.info("");
+        return userRole;
     }
 
-    public Users findById(Integer id) {
+    public UserRole findById(Integer id) {
         Session session = null;
-        Users user = null;
+        UserRole user = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            user = (Users) session.load(Users.class,new Integer(id));
+            user = (UserRole) session.load(UserRole.class,new Integer(id));
             session.getTransaction().commit();
 
         }catch (Exception e){
@@ -64,13 +64,13 @@ public class UserRepositoryImpl implements UserRepository{
     }
 
     @SuppressWarnings("unchecked")
-    public List<Users> findAll() {
+    public List<UserRole> findAll() {
         Session session = null;
-        List<Users> users = null;
+        List<UserRole> users = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            users = session.createQuery("from USERS").list();
+            users = session.createQuery("from USER_ROLE").list();
             session.getTransaction().commit();
             //logger.info("Items");
         }catch (Exception e){
@@ -84,12 +84,12 @@ public class UserRepositoryImpl implements UserRepository{
         return users;
     }
 
-    public Users update(Users user) {
+    public UserRole update(UserRole userRole) {
         Session session = null;
         try {
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            session.update(user);
+            session.update(userRole);
             session.getTransaction().commit();
             logger.info("");
         } catch (Exception e) {
@@ -103,14 +103,14 @@ public class UserRepositoryImpl implements UserRepository{
         return null;
     }
 
-    public Users delete(Integer id) {
+    public UserRole delete(Integer id) {
         Session session = null;
-        Users toDeleteUser = null;
+        UserRole toDeleteUserRole = null;
         try{
             session = this.sessionFactory.openSession();
             session.beginTransaction();
-            toDeleteUser = this.findById(id);
-            session.delete(toDeleteUser);
+            toDeleteUserRole = this.findById(id);
+            session.delete(toDeleteUserRole);
             session.getTransaction().commit();
             logger.info("");
         }catch (Exception e){
@@ -121,6 +121,6 @@ public class UserRepositoryImpl implements UserRepository{
                 session.close();
             }
         }
-        return toDeleteUser;
+        return toDeleteUserRole;
     }
 }

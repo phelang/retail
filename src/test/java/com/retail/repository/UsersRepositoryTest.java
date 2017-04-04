@@ -79,7 +79,7 @@ public class UsersRepositoryTest {
         Assert.assertEquals("new_password", newUpdatedUser.getPassword());
     }
 
-    @Test
+    /*@Test
     @Transactional
     public void E_testThatUserIsDeletedFromDatabase() throws Exception {
 
@@ -89,5 +89,5 @@ public class UsersRepositoryTest {
         Assert.assertNotNull(users);
         Assert.assertNull(deletedUser);
 
-    }
+    }*/
 }
