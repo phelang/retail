@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity(name = "USERS")
 @Proxy(lazy = false)
-public class Users implements Serializable{
+public class Users implements Serializable{ /* User is a reserved word, that is why Users is used here */
 
     public Users() {
     }

@@ -1,9 +1,7 @@
-package com.retail.repository;
+package com.retail.service;
 
 import com.retail.model.UserRole;
 import com.retail.springConfig.ApplicationContextConfig;
-import com.retail.springConfig.ServletInitializer;
-import com.retail.springConfig.SpringWebConfig;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -19,12 +17,12 @@ import java.util.List;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@ContextConfiguration(classes= {ApplicationContextConfig.class,ServletInitializer.class, SpringWebConfig.class})
-public class UserRoleRepositoryTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING) /* Tests Prefixed with A,B,C ...Z */
+@ContextConfiguration(classes= {ApplicationContextConfig.class})  // ServletInitializer.class, WebConfig.class
+public class UserRoleServiceTest {
 
     @Autowired
-    private UserRoleRepository userRoleRepository;
+    private UserRoleService userRoleService;
     static int id;
 
     @Test
@@ -34,10 +32,10 @@ public class UserRoleRepositoryTest {
         UserRole userRole = new UserRole.Builder()
                 .id(1)
                 .userId(1)
-                .role("user")
+                .role("administrator")
                 .build();
 
-        UserRole savedUserRole = (UserRole)  this.userRoleRepository.save(userRole);
+        UserRole savedUserRole = (UserRole)  this.userRoleService.save(userRole);
         id = userRole.getId();
 
         Assert.assertNotNull(id);
@@ -50,10 +48,10 @@ public class UserRoleRepositoryTest {
     public void B_testThatUserRoleIsReadFromDatabase() throws Exception {
 
 
-        UserRole userRole = (UserRole) this.userRoleRepository.findById(id);
+        UserRole userRole = (UserRole) this.userRoleService.findById(id);
 
         Assert.assertNotNull(userRole);
-        Assert.assertEquals(userRole.getRole(), "user");
+        Assert.assertEquals(userRole.getRole(), "administrator");
         Assert.assertEquals(userRole.getId(), id);
     }
 
@@ -61,7 +59,7 @@ public class UserRoleRepositoryTest {
     @Transactional
     public void C_testThatThereIsAListOfUserRoles() throws Exception {
 
-        List<UserRole> items = this.userRoleRepository.findAll();
+        List<UserRole> items = this.userRoleService.findAll();
         Assert.assertTrue(items.size() >= 0);
 
     }
@@ -70,28 +68,28 @@ public class UserRoleRepositoryTest {
     @Test
     @Transactional
     public void D_testThatUserRoleIsUpdatedInDatabase() throws Exception {
-        UserRole userRole = (UserRole) this.userRoleRepository.findById(id);
+        UserRole userRole = (UserRole) this.userRoleService.findById(id);
 
         UserRole updateUserRole = new UserRole.Builder()
                 .updater(userRole)
-                .role("administrator")
+                .role("manager")
                 .build();
 
-        this.userRoleRepository.update(updateUserRole);
-        UserRole newUpdatedUserRole = (UserRole) this.userRoleRepository.findById(id);
+        this.userRoleService.update(updateUserRole);
+        UserRole newUpdatedUserRole = (UserRole) this.userRoleService.findById(id);
 
-        Assert.assertEquals("administrator", newUpdatedUserRole.getRole());
+        Assert.assertEquals("manager", newUpdatedUserRole.getRole());
 
     }
 
-    /*@Test
+    @Test
     @Transactional
     public void E_testThatUserRoleIsDeletedFromDatabase() throws Exception {
 
-        UserRole userRole = this.userRoleRepository.delete(id);
-        UserRole deletedUserRole = (UserRole) this.userRoleRepository.findById(id);
+        UserRole userRole = this.userRoleService.delete(id);
+        UserRole deletedUserRole = (UserRole) this.userRoleService.findById(id);
 
         Assert.assertNotNull(userRole);
         Assert.assertNull(deletedUserRole);
-    }*/
+    }
 }

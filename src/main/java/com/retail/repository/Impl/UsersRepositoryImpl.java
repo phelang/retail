@@ -1,7 +1,7 @@
 package com.retail.repository.Impl;
 
 import com.retail.model.Users;
-import com.retail.repository.UserRepository;
+import com.retail.repository.UsersRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class UserRepositoryImpl implements UserRepository{
+public class UsersRepositoryImpl implements UsersRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(CategoryRepositoryImpl.class);
 

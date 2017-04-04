@@ -1,9 +1,7 @@
-package com.retail.repository;
+package com.retail.service;
 
 import com.retail.model.Users;
 import com.retail.springConfig.ApplicationContextConfig;
-import com.retail.springConfig.ServletInitializer;
-import com.retail.springConfig.SpringWebConfig;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -19,25 +17,26 @@ import java.util.List;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@ContextConfiguration(classes= {ApplicationContextConfig.class,ServletInitializer.class, SpringWebConfig.class})
-public class UsersRepositoryTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING) /* Tests Prefixed with A,B,C ...Z */
+@ContextConfiguration(classes= {ApplicationContextConfig.class})  // ServletInitializer.class, WebConfig.class
+public class UsersServiceTest {
 
     @Autowired
-    private UsersRepository usersRepository;
+    private UsersService usersService;
     static int id;
 
     @Test
     @Transactional
     public void A_testThatUserIsSavedToDatabase() throws Exception {
+
         Users users = new Users.Builder()
-                .username("users")
-                .password("uyy1")
-                .email("users@users.com")
+                .username("admin")
+                .password("admin")
+                .email("admin@admin.com")
                 .build();
 
 
-        Users savedUsers = (Users)  this.usersRepository.save(users);
+        Users savedUsers = (Users)  this.usersService.save(users);
         id = users.getId();
 
         Assert.assertNotNull(id);
@@ -49,45 +48,45 @@ public class UsersRepositoryTest {
     @Transactional
     public void B_testThatUserIsReadFromDatabase() throws Exception {
 
-        Users user = (Users) this.usersRepository.findById(id);
+        Users user = (Users) this.usersService.findById(id);
 
         Assert.assertNotNull(user);
-        Assert.assertEquals(user.getEmail(), "users@users.com");
+        Assert.assertEquals(user.getEmail(), "admin@admin.com");
         Assert.assertEquals(user.getId(), id);
     }
 
     @Test
     @Transactional
     public void C_testThatThereIsAListOfUsers() throws Exception {
-        List<Users> items = this.usersRepository.findAll();
+        List<Users> items = this.usersService.findAll();
         Assert.assertTrue(items.size() >= 0);
     }
 
     @Test
     @Transactional
     public void D_testThatUserIsUpdatedToDatabase() throws Exception {
-        Users user = (Users) this.usersRepository.findById(id);
+        Users user = (Users) this.usersService.findById(id);
 
         Users updateUser= new Users.Builder()
                 .updater(user)
-                .password("new_password")
+                .password("admin_001")
                 .build();
 
-        this.usersRepository.update(updateUser);
-        Users newUpdatedUser= (Users) this.usersRepository.findById(id);
+        this.usersService.update(updateUser);
+        Users newUpdatedUser= (Users) this.usersService.findById(id);
 
-        Assert.assertEquals("new_password", newUpdatedUser.getPassword());
+        Assert.assertEquals("admin_001", newUpdatedUser.getPassword());
     }
 
-    /*@Test
+    @Test
     @Transactional
     public void E_testThatUserIsDeletedFromDatabase() throws Exception {
 
-        Users users = this.usersRepository.delete(id);
-        Users deletedUser= (Users) this.usersRepository.findById(id);
+        Users users = this.usersService.delete(id);
+        Users deletedUser= (Users) this.usersService.findById(id);
 
         Assert.assertNotNull(users);
         Assert.assertNull(deletedUser);
 
-    }*/
+    }
 }

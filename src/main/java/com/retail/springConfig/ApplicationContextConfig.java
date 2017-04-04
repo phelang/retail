@@ -4,7 +4,11 @@ import com.retail.model.ItemCategory;
 import com.retail.repository.CategoryRepository;
 import com.retail.repository.Impl.CategoryRepositoryImpl;
 import com.retail.repository.Impl.ItemRepositoryImpl;
+import com.retail.repository.Impl.UserRoleRepositoryImpl;
+import com.retail.repository.Impl.UsersRepositoryImpl;
 import com.retail.repository.ItemRepository;
+import com.retail.repository.UserRoleRepository;
+import com.retail.repository.UsersRepository;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,5 +103,15 @@ public class ApplicationContextConfig {
     @Bean(name="itemRepository")
     public ItemRepository itemRepository() {
         return new ItemRepositoryImpl();
+    }
+
+    @Bean(name="usersRepository")
+    public UsersRepository usersRepository() {
+        return new UsersRepositoryImpl();
+    }
+
+    @Bean(name="userRoleRepository")
+    public UserRoleRepository userRoleRepository() {
+        return new UserRoleRepositoryImpl();
     }
 }
